@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,9 +15,15 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i("Info", "Button pressed!");
 
-        TextView currencyEditText = findViewById(R.id.currencyEditText);
-        Double currencyAmount = Double.parseDouble(currencyEditText.getText().toString());
-        Toast.makeText(this, "£" + currencyAmount + " is $" + 1.38 * currencyAmount, Toast.LENGTH_LONG).show();
+        EditText currencyEditText = (EditText) findViewById(R.id.currencyEditText);
+        String amountInPounds = currencyEditText.getText().toString();
+        Log.i("Pound Value", amountInPounds);
+        double amountInPoundsDouble = Double.parseDouble(amountInPounds);
+        double amountInDollarsDouble = 1.38 * amountInPoundsDouble;
+
+        String amountInDollars = String.format("%.2f", amountInDollarsDouble);
+        Log.i("Dollar Value", amountInDollars);
+        Toast.makeText(this, "£" + amountInPounds + " is $" + amountInDollars,Toast.LENGTH_LONG).show();
     }
 
     @Override
